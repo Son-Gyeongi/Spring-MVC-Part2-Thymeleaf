@@ -16,6 +16,7 @@ public class BasicController {
         return "basic/text-basic"; // 타입리프 뷰 템플릿
     }
 
+    // 문자열에서 escape, unescape 처리
     @GetMapping("/text-unescaped")
     public String textUnescaped(Model model) {
         // 타입리프 뷰 템플릿에 데이터를 넘긴다.
