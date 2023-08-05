@@ -52,6 +52,17 @@ public class BasicController {
 
         return "basic/variable";
     }
+    // variable() - 샘플 데이터를 위해서 User클래스를 내부에서 만들어서 쓰겠다.
+    @Data
+    static class User {
+        private String username;
+        private int age;
+
+        public User(String username, int age) {
+            this.username = username;
+            this.age = age;
+        }
+    }
 
     /**
      * session - httpRequest, httpResponse 뿐만 아니라
@@ -67,8 +78,7 @@ public class BasicController {
         session.setAttribute("sessionData", "Hello Session");
         return "basic/basic-objects";
     }
-
-    // 스프링 빈 만들기
+    // basicObjects()를 위해서 스프링 빈 만들기
     // ComponentScan이 되어서 helloBean이 등록이 된다.
     @Component("helloBean")
     static class HelloBean {
@@ -77,15 +87,5 @@ public class BasicController {
         }
     }
 
-    // variable() - 샘플 데이터를 위해서 User클래스를 내부에서 만들어서 쓰겠다.
-    @Data
-    static class User {
-        private String username;
-        private int age;
 
-        public User(String username, int age) {
-            this.username = username;
-            this.age = age;
-        }
-    }
 }
