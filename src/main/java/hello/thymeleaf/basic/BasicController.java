@@ -1,11 +1,13 @@
 package hello.thymeleaf.basic;
 
 import lombok.Data;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -50,6 +52,31 @@ public class BasicController {
 
         return "basic/variable";
     }
+
+    /**
+     * session - httpRequest, httpResponse 뿐만 아니라
+     * 로그인 같을 걸 할 때 사용자가 웹 브라우저를 끄지 않는 이상
+     * 계속 유지가 되는 것이다.
+     * httpRequest는 유저가 들어왔다가 나가면 끝난다.
+     * httpSession은 유저가 웹 브라우저를 종료하기 전까지는 계속 남아서 똑같은 데이터가 유지가 된다.
+     */
+    @GetMapping("/basic-objects")
+    public String basicObjects(HttpSession session) {
+        // sessionData에 접근하는 걸 알아보자
+        // session에 setAttribute로 데이터를 담아두고 타임리프에서 꺼낼 수 있다.
+        session.setAttribute("sessionData", "Hello Session");
+        return "basic/basic-objects";
+    }
+
+    // 스프링 빈 만들기
+    // ComponentScan이 되어서 helloBean이 등록이 된다.
+    @Component("helloBean")
+    static class HelloBean {
+        public String hello(String data) {
+            return "Hello " + data;
+        }
+    }
+
     // variable() - 샘플 데이터를 위해서 User클래스를 내부에서 만들어서 쓰겠다.
     @Data
     static class User {
