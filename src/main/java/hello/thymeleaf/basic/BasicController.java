@@ -155,4 +155,13 @@ public class BasicController {
         model.addAttribute("data", "Spring!");
         return "basic/comments";
     }
+
+    // 블록 th:block / HTML 태그가 아닌 타임리프의 유일한 자체 태그
+    // 타임리프는 속성으로 동작하지 태그로 동작하지 않는다.
+    // 해결하기 어려운 것들을 해결하기 위해서 이런 타임리프가 제공하는 자체 태그가 필요할 때가 있다.
+    @GetMapping("/block")
+    public String block(Model model) {
+        addUsers(model);
+        return "basic/block";
+    }
 }
