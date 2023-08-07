@@ -132,6 +132,7 @@ public class BasicController {
         addUsers(model);
         return "basic/each";
     }
+
     private void addUsers(Model model) {
         List<User> list = new ArrayList<>();
         list.add(new User("userA", 10));
@@ -139,5 +140,12 @@ public class BasicController {
         list.add(new User("userC", 30));
 
         model.addAttribute("users", list);
+    }
+
+    // 조건부 평가
+    @GetMapping("/condition")
+    public String condition(Model model) {
+        addUsers(model);
+        return "basic/condition";
     }
 }
